@@ -1,0 +1,28 @@
+{
+  "name": "animus-iac",
+  "version": "1.0.0",
+  "description": "Repositorio de Infrastructure as Code do projeto **Animus**, responsavel por definir e operar a infraestrutura dos ambientes com **Pulumi** e **Python**.",
+  "main": "index.js",
+  "scripts": {
+    "commitlint": "commitlint --edit",
+    "test": "echo \"No tests configured\"",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CtrI-Alt-Del/animus-iac.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CtrI-Alt-Del/animus-iac/issues"
+  },
+  "homepage": "https://github.com/CtrI-Alt-Del/animus-iac#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "husky": "^9.1.7"
+  }
+}
