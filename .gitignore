@@ -14,6 +14,9 @@ wheels/
 .env.stg
 .env.prod
 
+# Node
+node_modules/
+
 # AI Agents
 .agent
 .agents
