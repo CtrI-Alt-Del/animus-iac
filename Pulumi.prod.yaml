@@ -1,0 +1,4 @@
+config:
+  gcp:project: animus
+  gcp:region: us-east
+  animus:env: prod

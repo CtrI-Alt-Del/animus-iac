@@ -1,0 +1,13 @@
+[tool.poe.tasks]
+prev = { cmd = "pulumi preview" }
+stg = { cmd = "pulumi stack select stg" }
+prod = { cmd = "pulumi stack select prod" }
+up = { cmd = "pulumi up --yes" }
+
+[project]
+name = "animus-iac"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["poethepoet>=0.42", "pulumi>=3.224.0", "pulumi-gcp>=9.13.0"]
