@@ -1,0 +1,103 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+      - production
+  pull_request:
+    branches:
+      - main
+      - production
+
+permissions:
+  contents: read
+
+jobs:
+  validate-branches:
+    name: "Validate Branch Rules"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check Main -> Production Merge"
+        if: github.base_ref == 'production' && github.head_ref != 'main'
+        run: exit 1
+
+      - name: "Block Production -> Main Merge"
+        if: github.base_ref == 'main' && github.head_ref == 'production'
+        run: exit 1
+
+      - name: "Approve valid merge"
+        if: (github.base_ref == 'production' && github.head_ref == 'main') || (github.base_ref == 'main' && github.head_ref != 'production')
+        run: true
+
+  python-validate:
+    name: "Python / Lockfile Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Install dependencies (frozen)
+        run: uv sync --frozen
+
+      - name: Validate Python sources compile
+        run: uv run python -m compileall src
+
+  pulumi-preview:
+    name: "Pulumi Preview (stg)"
+    needs:
+      - python-validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && secrets.PULUMI_ACCESS_TOKEN != ''
+    env:
+      PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+      PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Install dependencies (frozen)
+        run: uv sync --frozen
+
+      - name: Auth to Google Cloud (Workload Identity Federation)
+        if: secrets.GCP_WORKLOAD_IDENTITY_PROVIDER != '' && secrets.GCP_SERVICE_ACCOUNT != ''
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Setup Pulumi CLI
+        uses: pulumi/setup-pulumi@v2
+
+      - name: Pulumi login
+        run: |
+          if [ -n "${{ secrets.PULUMI_BACKEND_URL }}" ]; then
+            pulumi login "${{ secrets.PULUMI_BACKEND_URL }}"
+          else
+            pulumi login
+          fi
+
+      - name: Pulumi preview (stg)
+        run: |
+          pulumi stack select stg --non-interactive
+          pulumi preview --non-interactive --diff
