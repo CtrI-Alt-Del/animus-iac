@@ -13,7 +13,7 @@ def build_storage_config(
     ]
 
     bucket = gcp.storage.Bucket(
-        "storage-bucket",
+        "animus-bucket",
         name=bucket_name,
         project=settings.gcp_project,
         location=settings.gcp_region,

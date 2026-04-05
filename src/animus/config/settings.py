@@ -26,18 +26,41 @@ class Settings:
     mlflow_enabled: bool
     database_name: str
     database_user: str
-    database_password: pulumi.Output[str]
+    database_password: pulumi.Input[str]
+    database_url: Optional[pulumi.Input[str]]
+    gcs_emulator_host: Optional[pulumi.Input[str]]
+    gemini_api_key: Optional[pulumi.Input[str]]
+    openai_api_key: Optional[pulumi.Input[str]]
+    google_client_id: Optional[pulumi.Input[str]]
+    pangea_service_url: Optional[pulumi.Input[str]]
+    jwt_secret_key: Optional[pulumi.Input[str]]
+    jwt_algorithm: Optional[pulumi.Input[str]]
+    jwt_access_token_expiration_seconds: Optional[pulumi.Input[str]]
+    jwt_refresh_token_expiration_seconds: Optional[pulumi.Input[str]]
+    resend_api_key: Optional[pulumi.Input[str]]
+    resend_sender_email: Optional[pulumi.Input[str]]
+    email_verification_secret_key: Optional[pulumi.Input[str]]
+    email_verification_salt: Optional[pulumi.Input[str]]
+    email_verification_otp_ttl_seconds: Optional[pulumi.Input[str]]
+    email_verification_token_max_age_seconds: Optional[pulumi.Input[str]]
     api_image: str
     mlflow_image: str
-    qdrant_url: Optional[pulumi.Output[str]]
-    qdrant_api_key: Optional[pulumi.Output[str]]
-    inngest_event_key: Optional[pulumi.Output[str]]
-    onesignal_api_key: Optional[pulumi.Output[str]]
+    qdrant_url: Optional[pulumi.Input[str]]
+    qdrant_api_key: Optional[pulumi.Input[str]]
+    inngest_event_key: Optional[pulumi.Input[str]]
+    inngest_signing_key: Optional[pulumi.Input[str]]
+    onesignal_api_key: Optional[pulumi.Input[str]]
     github_repository: Optional[str]
     github_branch: Optional[str]
 
 
 def load_settings() -> Settings:
+    def _config_secret(
+        config: pulumi.Config,
+        config_key: str,
+    ) -> Optional[pulumi.Input[str]]:
+        return config.get_secret(config_key)
+
     stack = pulumi.get_stack()
     app_config = pulumi.Config("animus")
     gcp_config = pulumi.Config("gcp")
@@ -75,14 +98,46 @@ def load_settings() -> Settings:
         database_name=app_config.get("databaseName") or "animus",
         database_user=app_config.get("databaseUser") or "animus",
         database_password=app_config.require_secret("dbPassword"),
+        database_url=_config_secret(app_config, "databaseUrl"),
+        gcs_emulator_host=_config_secret(app_config, "gcsEmulatorHost"),
+        gemini_api_key=_config_secret(app_config, "geminiApiKey"),
+        openai_api_key=_config_secret(app_config, "openaiApiKey"),
+        google_client_id=_config_secret(app_config, "googleClientId"),
+        pangea_service_url=_config_secret(app_config, "pangeaServiceUrl"),
+        jwt_secret_key=_config_secret(app_config, "jwtSecretKey"),
+        jwt_algorithm=_config_secret(app_config, "jwtAlgorithm"),
+        jwt_access_token_expiration_seconds=_config_secret(
+            app_config,
+            "jwtAccessTokenExpirationSeconds",
+        ),
+        jwt_refresh_token_expiration_seconds=_config_secret(
+            app_config,
+            "jwtRefreshTokenExpirationSeconds",
+        ),
+        resend_api_key=_config_secret(app_config, "resendApiKey"),
+        resend_sender_email=_config_secret(app_config, "resendSenderEmail"),
+        email_verification_secret_key=_config_secret(
+            app_config,
+            "emailVerificationSecretKey",
+        ),
+        email_verification_salt=_config_secret(app_config, "emailVerificationSalt"),
+        email_verification_otp_ttl_seconds=_config_secret(
+            app_config,
+            "emailVerificationOtpTtlSeconds",
+        ),
+        email_verification_token_max_age_seconds=_config_secret(
+            app_config,
+            "emailVerificationTokenMaxAgeSeconds",
+        ),
         api_image=app_config.get("apiImage")
         or "us-docker.pkg.dev/cloudrun/container/hello",
         mlflow_image=app_config.get("mlflowImage")
         or "us-docker.pkg.dev/cloudrun/container/hello",
-        qdrant_url=app_config.get_secret("qdrantUrl"),
-        qdrant_api_key=app_config.get_secret("qdrantApiKey"),
-        inngest_event_key=app_config.get_secret("inngestEventKey"),
-        onesignal_api_key=app_config.get_secret("onesignalApiKey"),
+        qdrant_url=_config_secret(app_config, "qdrantUrl"),
+        qdrant_api_key=_config_secret(app_config, "qdrantApiKey"),
+        inngest_event_key=_config_secret(app_config, "inngestEventKey"),
+        inngest_signing_key=_config_secret(app_config, "inngestSigningKey"),
+        onesignal_api_key=_config_secret(app_config, "onesignalApiKey"),
         github_repository=app_config.get("githubRepository"),
         github_branch=app_config.get("githubBranch"),
     )

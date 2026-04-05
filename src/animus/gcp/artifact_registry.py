@@ -18,9 +18,18 @@ def build_artifact_registry_config(
         opts=pulumi.ResourceOptions(depends_on=project_services["_resources"]),
     )
 
+    repository_url = pulumi.Output.concat(
+        settings.gcp_region,
+        "-docker.pkg.dev/",
+        settings.gcp_project,
+        "/",
+        repository.repository_id,
+    )
+
     return {
         "repository_id": repository.repository_id,
         "format": repository.format,
         "location": repository.location,
-        "repository_url": repository.name,
+        "repository_name": repository.name,
+        "repository_url": repository_url,
     }

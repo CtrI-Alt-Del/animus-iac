@@ -10,6 +10,7 @@ def build_cloud_sql_config(
     network: dict[str, object],
     secrets: dict[str, object],
 ) -> dict[str, object]:
+    _ = secrets
     instance_name = resource_name("postgres", settings.stack)
     private_services_connection = network["_private_services_connection_resource"]
 
@@ -67,5 +68,5 @@ def build_cloud_sql_config(
         "private_ip_address": instance.private_ip_address,
         "database_name": database.name,
         "database_user": user.name,
-        "database_password_secret_id": secrets["items"]["db-password"]["secret_id"],
+        "database_password_source": "pulumi-config-secret",
     }
