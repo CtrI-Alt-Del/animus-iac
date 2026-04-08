@@ -19,6 +19,7 @@ class Settings:
     qdrant_collection_prefix: str
     cloud_run_min_instances: int
     cloud_sql_tier: str
+    cloud_sql_edition: str
     cloud_sql_backups_enabled: bool
     memorystore_tier: str
     memorystore_memory_size_gb: int
@@ -60,6 +61,7 @@ def load_settings() -> Settings:
         or (1 if is_production else 0),
         cloud_sql_tier=app_config.get("cloudSqlTier")
         or ("db-g1-small" if is_production else "db-f1-micro"),
+        cloud_sql_edition=app_config.get("cloudSqlEdition") or "ENTERPRISE",
         cloud_sql_backups_enabled=app_config.get_bool("cloudSqlBackupsEnabled")
         if app_config.get_bool("cloudSqlBackupsEnabled") is not None
         else is_production,

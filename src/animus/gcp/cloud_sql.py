@@ -20,6 +20,7 @@ def build_cloud_sql_config(
         region=settings.gcp_region,
         deletion_protection=settings.is_production,
         settings=gcp.sql.DatabaseInstanceSettingsArgs(
+            edition=settings.cloud_sql_edition,
             tier=settings.cloud_sql_tier,
             availability_type="REGIONAL" if settings.is_production else "ZONAL",
             backup_configuration=gcp.sql.DatabaseInstanceSettingsBackupConfigurationArgs(
@@ -60,6 +61,7 @@ def build_cloud_sql_config(
         "instance_name": instance.name,
         "database_version": instance.database_version,
         "region": instance.region,
+        "edition": settings.cloud_sql_edition,
         "tier": settings.cloud_sql_tier,
         "backups_enabled": settings.cloud_sql_backups_enabled,
         "private_network": network["self_link"],
