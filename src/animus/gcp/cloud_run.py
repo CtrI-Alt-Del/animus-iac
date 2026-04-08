@@ -4,17 +4,12 @@ import pulumi_gcp as gcp
 from animus.config import Settings, resource_name
 
 
-def _secret_env(
+def _secret_value_env(
     secret_name: str, env_name: str, secrets: dict[str, object]
 ) -> dict[str, object]:
     return {
         "name": env_name,
-        "value_source": {
-            "secret_key_ref": {
-                "secret": secrets["items"][secret_name]["secret_id"],
-                "version": "latest",
-            },
-        },
+        "value": secrets["items"][secret_name]["value"],
     }
 
 
@@ -26,32 +21,47 @@ def _build_api_envs(
     secrets: dict[str, object],
 ) -> list[dict[str, object]]:
     envs = [
-        {"name": "ANIMUS_ENV", "value": settings.environment},
-        {"name": "DB_NAME", "value": settings.database_name},
-        {"name": "DB_USER", "value": settings.database_user},
+        {"name": "MODE", "value": settings.environment},
+        {"name": "POSTGRES_DB", "value": settings.database_name},
+        {"name": "POSTGRES_USER", "value": settings.database_user},
+        {"name": "GCS_BUCKET_NAME", "value": storage["bucket_name"]},
         {
-            "name": "DB_SOCKET_PATH",
-            "value": pulumi.Output.concat("/cloudsql/", cloud_sql["connection_name"]),
+            "name": "REDIS_URL",
+            "value": pulumi.Output.concat(
+                "redis://", memorystore["host"], ":", memorystore["port"], "/0"
+            ),
         },
-        {"name": "REDIS_HOST", "value": memorystore["host"]},
-        {"name": "REDIS_PORT", "value": memorystore["port"].apply(str)},
-        {"name": "FILES_BUCKET", "value": storage["bucket_name"]},
-        {
-            "name": "QDRANT_COLLECTION_PREFIX",
-            "value": settings.qdrant_collection_prefix,
-        },
-        _secret_env("db-password", "DB_PASSWORD", secrets),
+        _secret_value_env("postgres-password", "POSTGRES_PASSWORD", secrets),
     ]
 
     optional_secret_envs = {
-        "inngest-event-key": "INNGEST_EVENT_KEY",
-        "onesignal-api-key": "ONESIGNAL_API_KEY",
-        "qdrant-api-key": "QDRANT_API_KEY",
+        "database-url": "DATABASE_URL",
+        "gcs-emulator-host": "GCS_EMULATOR_HOST",
+        "gemini-api-key": "GEMINI_API_KEY",
+        "openai-api-key": "OPENAI_API_KEY",
+        "google-client-id": "GOOGLE_CLIENT_ID",
+        "pangea-service-url": "PANGEA_SERVICE_URL",
         "qdrant-url": "QDRANT_URL",
+        "qdrant-api-key": "QDRANT_API_KEY",
+        "inngest-event-key": "INNGEST_EVENT_KEY",
+        "inngest-signing-key": "INNGEST_SIGNING_KEY",
+        "jwt-secret-key": "JWT_SECRET_KEY",
+        "jwt-algorithm": "JWT_ALGORITHM",
+        "jwt-access-token-expiration-seconds": "JWT_ACCESS_TOKEN_EXPIRATION_SECONDS",
+        "jwt-refresh-token-expiration-seconds": "JWT_REFRESH_TOKEN_EXPIRATION_SECONDS",
+        "resend-api-key": "RESEND_API_KEY",
+        "resend-sender-email": "RESEND_SENDER_EMAIL",
+        "email-verification-secret-key": "EMAIL_VERIFICATION_SECRET_KEY",
+        "email-verification-salt": "EMAIL_VERIFICATION_SALT",
+        "email-verification-otp-ttl-seconds": "EMAIL_VERIFICATION_OTP_TTL_SECONDS",
+        "email-verification-token-max-age-seconds": "EMAIL_VERIFICATION_TOKEN_MAX_AGE_SECONDS",
     }
     for secret_name, env_name in optional_secret_envs.items():
-        if secrets["items"][secret_name]["has_version"]:
-            envs.append(_secret_env(secret_name, env_name, secrets))
+        if (
+            secret_name in secrets["items"]
+            and secrets["items"][secret_name]["has_value"]
+        ):
+            envs.append(_secret_value_env(secret_name, env_name, secrets))
 
     return envs
 
@@ -131,10 +141,8 @@ def build_cloud_run_config(
     secrets: dict[str, object],
     iam: dict[str, object],
 ) -> dict[str, object]:
-    dependencies = [
-        *secrets["_secret_versions"].values(),
-    ]
-    api_service = _cloud_run_service(
+    dependencies: list[object] = []
+    animus_server_service = _cloud_run_service(
         "cloud-run-api-service",
         resource_name("api", settings.stack),
         settings.api_image,
@@ -150,55 +158,18 @@ def build_cloud_run_config(
         "cloud-run-api-public-invoker",
         project=settings.gcp_project,
         location=settings.gcp_region,
-        name=api_service.name,
+        name=animus_server_service.name,
         role="roles/run.invoker",
         member="allUsers",
-        opts=pulumi.ResourceOptions(depends_on=[api_service]),
+        opts=pulumi.ResourceOptions(depends_on=[animus_server_service]),
     )
 
-    mlflow_service = None
-    if settings.mlflow_enabled:
-        mlflow_envs = [
-            {
-                "name": "DB_NAME",
-                "value": settings.database_name,
-            },
-            {
-                "name": "DB_USER",
-                "value": settings.database_user,
-            },
-            {
-                "name": "DB_SOCKET_PATH",
-                "value": pulumi.Output.concat(
-                    "/cloudsql/", cloud_sql["connection_name"]
-                ),
-            },
-            {
-                "name": "MLFLOW_ARTIFACT_ROOT",
-                "value": pulumi.Output.concat(
-                    "gs://", storage["bucket_name"], "/mlflow"
-                ),
-            },
-            _secret_env("db-password", "DB_PASSWORD", secrets),
-        ]
-        mlflow_service = _cloud_run_service(
-            "cloud-run-mlflow-service",
-            resource_name("mlflow", settings.stack),
-            settings.mlflow_image,
-            mlflow_envs,
-            settings,
-            network,
-            cloud_sql,
-            iam,
-            dependencies,
-        )
-
     return {
-        "service_name": api_service.name,
-        "service_uri": api_service.uri,
+        "service_name": animus_server_service.name,
+        "service_uri": animus_server_service.uri,
         "location": settings.gcp_region,
         "min_instances": settings.cloud_run_min_instances,
         "ingress": "INGRESS_TRAFFIC_ALL",
-        "mlflow_service_name": mlflow_service.name if mlflow_service else None,
-        "mlflow_service_uri": mlflow_service.uri if mlflow_service else None,
+        "mlflow_service_name": None,
+        "mlflow_service_uri": None,
     }

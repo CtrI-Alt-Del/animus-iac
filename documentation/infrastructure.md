@@ -86,8 +86,8 @@ armazenadas no Secret Manager:
 | Ambiente | Environment Inngest | Secret |
 |---|---|---|
 | Local | Inngest Dev Server | — |
-| Stg | `stg` | `stg/inngest_event_key` |
-| Prod | `prod` | `prod/inngest_event_key` |
+| Stg | `stg` | `stg/inngest_event_key` / `stg/inngest_signing_key` |
+| Prod | `prod` | `prod/inngest_event_key` / `prod/inngest_signing_key` |
 
 ---
 

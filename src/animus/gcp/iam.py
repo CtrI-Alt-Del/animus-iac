@@ -18,6 +18,7 @@ def build_identity_config(
     project_services: dict[str, object],
     secrets: dict[str, object],
 ) -> dict[str, object]:
+    _ = secrets
     dependencies = project_services["_resources"]
 
     runtime = gcp.serviceaccount.Account(
@@ -38,7 +39,7 @@ def build_identity_config(
 
     runtime_roles = [
         "roles/cloudsql.client",
-        "roles/storage.objectAdmin",
+        "roles/storage.objectUser",
     ]
     for index, role in enumerate(runtime_roles):
         gcp.projects.IAMMember(
@@ -55,7 +56,6 @@ def build_identity_config(
         "roles/iam.serviceAccountUser",
         "roles/redis.admin",
         "roles/run.admin",
-        "roles/secretmanager.admin",
         "roles/serviceusage.serviceUsageAdmin",
         "roles/storage.admin",
         "roles/vpcaccess.admin",
@@ -67,16 +67,6 @@ def build_identity_config(
             role=role,
             member=deploy.member,
             opts=pulumi.ResourceOptions(depends_on=[deploy]),
-        )
-
-    for name, secret in secrets["_secret_resources"].items():
-        gcp.secretmanager.SecretIamMember(
-            f"{name}-secret-accessor",
-            project=settings.gcp_project,
-            secret_id=secret.id,
-            role="roles/secretmanager.secretAccessor",
-            member=runtime.member,
-            opts=pulumi.ResourceOptions(depends_on=[runtime, secret]),
         )
 
     workload_identity = None
