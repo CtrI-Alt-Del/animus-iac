@@ -21,6 +21,12 @@ def _connector_subnet_cidr_for_environment(environment: str) -> str:
     return "10.30.1.0/28"
 
 
+def _vpc_connector_name(stack: str) -> str:
+    # Serverless VPC Access connector names must be shorter than 21 chars,
+    # and hyphens count twice for that limit.
+    return f"ani-{stack}-vpca"
+
+
 def build_network_config(
     settings: Settings,
     project_services: dict[str, object],
@@ -29,7 +35,7 @@ def build_network_config(
     subnet_name = resource_name("subnet", settings.stack)
     connector_subnet_name = resource_name("connector-subnet", settings.stack)
     peering_range_name = resource_name("private-services", settings.stack)
-    connector_name = resource_name("vpcaccess", settings.stack)[:25]
+    connector_name = _vpc_connector_name(settings.stack)
 
     network = gcp.compute.Network(
         "network",
@@ -71,6 +77,7 @@ def build_network_config(
         network=network.id,
         service="servicenetworking.googleapis.com",
         reserved_peering_ranges=[private_services_range.name],
+        deletion_policy="DELETE" if settings.is_production else "ABANDON",
     )
 
     vpc_connector = gcp.vpcaccess.Connector(

@@ -10,12 +10,14 @@ from .storage import build_storage_config
 from animus.config import Settings
 
 
-def deploy(settings: Settings) -> dict[str, dict[str, object]]:
+def deploy(
+    settings: Settings, qdrant: dict[str, object]
+) -> dict[str, dict[str, object]]:
     services = enable_services(settings)
     network = build_network_config(settings, services)
     artifact_registry = build_artifact_registry_config(settings, services)
     storage = build_storage_config(settings, services)
-    secrets = build_secrets_config(settings, services)
+    secrets = build_secrets_config(settings, services, qdrant)
     iam = build_identity_config(settings, services, secrets)
     cloud_sql = build_cloud_sql_config(settings, services, network, secrets)
     memorystore = build_memorystore_config(settings, services, network)

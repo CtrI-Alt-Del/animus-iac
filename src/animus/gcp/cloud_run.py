@@ -28,7 +28,11 @@ def _build_api_envs(
         {
             "name": "REDIS_URL",
             "value": pulumi.Output.concat(
-                "redis://", memorystore["host"], ":", memorystore["port"], "/0"
+                "redis://",
+                memorystore["host"],
+                ":",
+                pulumi.Output.from_input(memorystore["port"]).apply(str),
+                "/0",
             ),
         },
         _secret_value_env("postgres-password", "POSTGRES_PASSWORD", secrets),

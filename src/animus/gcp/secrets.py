@@ -28,9 +28,11 @@ ENV_SECRET_NAMES = (
     "EMAIL_VERIFICATION_TOKEN_MAX_AGE_SECONDS",
 )
 
+
 def build_secrets_config(
     settings: Settings,
     project_services: dict[str, object],
+    qdrant: dict[str, object],
 ) -> dict[str, object]:
     _ = project_services
 
@@ -58,11 +60,13 @@ def build_secrets_config(
     if settings.pangea_service_url is not None:
         secret_specs["pangea-service-url"] = settings.pangea_service_url
 
-    if settings.qdrant_url is not None:
-        secret_specs["qdrant-url"] = settings.qdrant_url
+    qdrant_cluster = qdrant["cluster"]
 
-    if settings.qdrant_api_key is not None:
-        secret_specs["qdrant-api-key"] = settings.qdrant_api_key
+    if qdrant_cluster["url"] is not None:
+        secret_specs["qdrant-url"] = qdrant_cluster["url"]
+
+    if qdrant_cluster["api_key"] is not None:
+        secret_specs["qdrant-api-key"] = qdrant_cluster["api_key"]
 
     if settings.inngest_event_key is not None:
         secret_specs["inngest-event-key"] = settings.inngest_event_key
