@@ -8,6 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
+.pulumi-venv
+.uv-cache
 
 # Environment variables
 .env

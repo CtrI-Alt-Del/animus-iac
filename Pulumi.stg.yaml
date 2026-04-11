@@ -1,4 +1,11 @@
 config:
-  gcp:project: animus
-  gcp:region: us-east
+  gcp:project: project-c50be4cf-bd21-4b9c-b7e
+  gcp:region: us-east1
+  animus:apiImage: us-docker.pkg.dev/cloudrun/container/hello
+  animus:databaseName: animus
+  animus:databaseUser: animus
   animus:env: stg
+  animus:githubBranch: main
+  animus:mlflowImage: us-docker.pkg.dev/cloudrun/container/hello
+  animus:dbPassword:
+    secure: AAABAO1T8uw61VRuuJFZh3EZhklC1xYtQGBF+zd4sPmSVnJk7sYhTveilRzP/A==

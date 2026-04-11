@@ -96,8 +96,8 @@ Exemplo de outputs esperados:
 
 ```text
 stack: stg
-gcp_project: animus
-gcp_region: us-east
+gcp_project: project-c50be4cf-bd21-4b9c-b7e
+gcp_region: us-east1
 is_production: false
 ```
 
@@ -135,14 +135,14 @@ Fluxo comum para desenvolvimento:
 ```bash
 gcloud auth login
 gcloud auth application-default login
-gcloud config set project animus
+gcloud config set project project-c50be4cf-bd21-4b9c-b7e
 ```
 
 O que cada passo faz:
 
 - `gcloud auth login`: autentica sua conta na CLI do Google Cloud
 - `gcloud auth application-default login`: configura credenciais locais para bibliotecas e providers, incluindo o Pulumi GCP
-- `gcloud config set project animus`: define o projeto padrao da sessao local
+- `gcloud config set project project-c50be4cf-bd21-4b9c-b7e`: define o projeto padrao da sessao local
 
 Se o acesso for feito por service account, exporte as credenciais de forma segura e sem commitar arquivos sensiveis no repositorio.
 
@@ -189,7 +189,7 @@ Fluxo recomendado apos o login:
 pulumi login
 gcloud auth login
 gcloud auth application-default login
-gcloud config set project animus
+gcloud config set project project-c50be4cf-bd21-4b9c-b7e
 pulumi stack init stg
 pulumi stack init prod
 poe stg

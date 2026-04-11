@@ -2,4 +2,7 @@ name: animus
 description: Infrastructure as Code do projeto Animus
 runtime:
   name: python
-main: src/__main__.py
+  options:
+    toolchain: uv
+    virtualenv: .pulumi-venv
+main: src
