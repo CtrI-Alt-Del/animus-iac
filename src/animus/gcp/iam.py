@@ -13,6 +13,20 @@ def _github_attribute_condition(settings: Settings) -> str:
     return condition
 
 
+def _bind_project_roles_to_user(settings: Settings, roles: list[str]) -> None:
+    if not settings.iam_user_email:
+        return
+
+    member = f"user:{settings.iam_user_email}"
+    for index, role in enumerate(roles):
+        gcp.projects.IAMMember(
+            f"user-project-role-{index}",
+            project=settings.gcp_project,
+            role=role,
+            member=member,
+        )
+
+
 def build_identity_config(
     settings: Settings,
     project_services: dict[str, object],
@@ -68,6 +82,14 @@ def build_identity_config(
             member=deploy.member,
             opts=pulumi.ResourceOptions(depends_on=[deploy]),
         )
+
+    _bind_project_roles_to_user(
+        settings,
+        [
+            "roles/serviceusage.serviceUsageConsumer",
+            "roles/cloudsql.client",
+        ],
+    )
 
     workload_identity = None
     if settings.github_repository:

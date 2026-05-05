@@ -6,6 +6,7 @@ config:
   animus:databaseUser: animus
   animus:env: stg
   animus:githubBranch: main
+  animus:iamUserEmail: animus.ctrlaltdel2@gmail.com
   animus:mlflowImage: us-docker.pkg.dev/cloudrun/container/hello
   animus:dbPassword:
     secure: AAABAO1T8uw61VRuuJFZh3EZhklC1xYtQGBF+zd4sPmSVnJk7sYhTveilRzP/A==

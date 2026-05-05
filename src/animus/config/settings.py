@@ -51,6 +51,7 @@ class Settings:
     inngest_event_key: Optional[pulumi.Input[str]]
     inngest_signing_key: Optional[pulumi.Input[str]]
     onesignal_api_key: Optional[pulumi.Input[str]]
+    iam_user_email: Optional[str]
     github_repository: Optional[str]
     github_branch: Optional[str]
 
@@ -140,6 +141,7 @@ def load_settings() -> Settings:
         inngest_event_key=_config_secret(app_config, "inngestEventKey"),
         inngest_signing_key=_config_secret(app_config, "inngestSigningKey"),
         onesignal_api_key=_config_secret(app_config, "onesignalApiKey"),
+        iam_user_email=app_config.get("iamUserEmail"),
         github_repository=app_config.get("githubRepository"),
         github_branch=app_config.get("githubBranch"),
     )
