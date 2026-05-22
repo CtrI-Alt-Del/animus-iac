@@ -9,3 +9,51 @@ config:
   animus:mlflowImage: us-docker.pkg.dev/cloudrun/container/hello
   animus:dbPassword:
     secure: AAABAO1T8uw61VRuuJFZh3EZhklC1xYtQGBF+zd4sPmSVnJk7sYhTveilRzP/A==
+  animus:jwtSecretKey:
+    secure: AAABALUFWnOi//5KewlL4XiRGCnnZyrAXJ+uI9rIzG/3tCtoHKMpmQSjw7fbbt8ipZBQlc+fusIcGmVt9s5YKmWBG1A=
+  animus:jwtAlgorithm:
+    secure: AAABAMYPj2faV3mMQbbAZhdMh/QKG+le2T42n4fyuGF/Kzoxtw==
+  animus:jwtAccessTokenExpirationSeconds:
+    secure: AAABAEcNH0iTLJXE3Xeq+R1UbLZGXDGG873VxVbzO+r0Hdd0
+  animus:jwtRefreshTokenExpirationSeconds:
+    secure: AAABANtETObsUmIyb+MLYKvD7+f5Dif0kdccmYDk/nrBPD385Q==
+  animus:qdrantUrl:
+    secure: AAABAPrkLhR0ksshQjz+No0A/AJX8SoK0qeAiQJvKZAXvjyjOrP+3KfT6InCLBSa7hS2lYw=
+  animus:qdrantApiKey:
+    secure: AAABAB6dQ22gEGy/Cthz5TTEYNgE1xsSPukznPZYKUi0RuIqsz3xKltV7RP+JWUCiaWmXIcGNakh3tNaCSoApO3rbB4XKqLgFMshDw==
+  animus:inngestEventKey:
+    secure: AAABAIrfy+UcUt2QpYJnL6PG7dnGAu2MwFLVa75Uh3iIlWhfY+uLIZFfKuwr0FXuYVyNiLdtrsOvcwNRRhZlpEGT5UZME7pCrtH0cYYl/uPYbq56YnH5KE1aXb9hxcOh+nAyRkvvahuN2b4Q7WdlRIVER9zjrQ==
+  animus:inngestSigningKey:
+    secure: AAABAOt3UR/dWHVU6UrIYCxpSVFcl1wKhwmqoxJa9wqJJFCB+v0ni4U50flCwcfr8gl++V+fbN7mMfjCfF8Vp5H89z1ioQaMMJ/OP6jCYgBtxSBMWbxlZN6AGa79RSxzzZhDXhZ6JK66vBrr6Q==
+  animus:googleClientId:
+    secure: AAABAP6NCUBgVdWp5PzrPnVW8Mf4PtqdrxfJ4oU3K0GGehQnWq8N+OlqvABm1jmfKuhiEZh7BIWnjtfoZEp57Djh5UUMqM2n00ogOdQK2YWhxG2pswHyWpRmHzIhrX5IWd3nTA9piQ==
+  animus:resendApiKey:
+    secure: AAABAERnlKuJN3tK8YAR5bKbdQwohkEj8zoDR6R6rXb0hDxarQ69HMDTy2zs5mlC0sL6LwU2aNrHBcPE8wUaQX1vb5E=
+  animus:resendSenderEmail:
+    secure: AAABAIVYfpdubl1QVU5ekwJyb88YoZLH+ORVEAbKpJNcLAyuggu/5v7q+QsKjDA6gw/UQJNl
+  animus:emailVerificationSecretKey:
+    secure: AAABAP2kLnfi0U5cMm/0jaQoDmhTERljH1n1pmNyR/+zvbGzHan8dAwX7n7wjjc9vZrs4+OeSEWptlgZ7O18ekbp6rk=
+  animus:emailVerificationSalt:
+    secure: AAABAFL8aocEtNNipCYNGQaqHK0Z8tBSZHAwEhkWs3TeWUf3GSmg5jjvl9hLX8hN/42pSy1CXuFsV8ESb7Xw4V2gao4=
+  animus:emailVerificationOtpTtlSeconds:
+    secure: AAABAIfLqlnD/d773XYKqsOn7pCyy0g6czULAH7MqfuwdffQ
+  animus:emailVerificationTokenMaxAgeSeconds:
+    secure: AAABAC6ncdLIR/RCVkIQKT622CTpe2ZuteiWQsvwE4e9c9z5
+  animus:geminiApiKey:
+    secure: AAABAHjepjLdsiYFGU8cxpnuk29fJJcuGpf2deyxaZFz41Vdx08RuAE1cPZSBNp3wkAXhhIEVNo0DJ1iDOwnmd2gr39LRQw=
+  animus:openaiApiKey:
+    secure: AAABANALxihRB4NSTIKg/4wbwoqvBfD7ivWRm2UY6RcHqSf7wDvvftDFAA==
+  animus:pangeaServiceUrl:
+    secure: AAABAJjoX4v6OlMVSlzAGUfzFyd/7v8lhw8gdJp0vTOJDaSJxGwMpzBfP0PsDHO4PMK1qgIg7SyrfmC2fw==
+  animus:gcsEmulatorHost:
+    secure: AAABAPvjgVkpU8el2tcZyVht37CZYg4adPtCYPHdVsLtERo1fMDMU6XUqLp90b45A9dBbRw=
+  animus:serverAppUrl:
+    secure: AAABALD5F/QRX1qYfarcNIxVWqVPvCO1kqk3Q9b+1FHe+GxeT8KYOuSuJYBh1et5SybeBw==
+  animus:googleServerClientId:
+    secure: AAABAOOeO0r7unO0FHnMlhYlIIRBknQ04oQUTDeqBXi0adnH0xvReQjUVG1U7/e2YZqfnY6TAlb0Mbzr1jBiW5QyUPC/7eaN08JO6AUqL273O65dSXdQmhyMArFnHeTxygnY7Y0ETw==
+  animus:gcsUrl:
+    secure: AAABABnbh1nLXFaGvY6GZW5ysEToyd1h4A97E9UpEyOkCSF6Ct/js0f846AGFbDDoPf2lg==
+  animus:gcsDownloadUrl:
+    secure: AAABAN7wMFwkLIZ6Pr4NHK5IDNjHlp5wiopy4+DSc63FC61b7cYo6EbQXBHVzgfOHeiCn+ZmhOPyzA/DhmlJSZBj93i6vgqyNwFJCrDDTiaUSkNki131rZxZ
+  animus:pangeaUrl:
+    secure: AAABAKS3p6gCKwFBdBrxro5ww/5hDJlI9ySiZufidYl30FSJKhKKYyIH7zmHIkL6WqSlzIBXHTvHKBh5rg==
