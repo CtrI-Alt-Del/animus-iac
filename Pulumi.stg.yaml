@@ -6,54 +6,53 @@ config:
   animus:databaseUser: animus
   animus:env: stg
   animus:githubBranch: main
+  animus:iamUserEmail: animus.ctrlaltdel2@gmail.com
   animus:mlflowImage: us-docker.pkg.dev/cloudrun/container/hello
-  animus:dbPassword:
-    secure: AAABAO1T8uw61VRuuJFZh3EZhklC1xYtQGBF+zd4sPmSVnJk7sYhTveilRzP/A==
-  animus:jwtSecretKey:
-    secure: AAABALUFWnOi//5KewlL4XiRGCnnZyrAXJ+uI9rIzG/3tCtoHKMpmQSjw7fbbt8ipZBQlc+fusIcGmVt9s5YKmWBG1A=
   animus:jwtAlgorithm:
-    secure: AAABAMYPj2faV3mMQbbAZhdMh/QKG+le2T42n4fyuGF/Kzoxtw==
+    secure: AAABADnjAeKhbhsCXUNx23QotAXjSWm30njcZMPHBMQ+N7Qu/w==
   animus:jwtAccessTokenExpirationSeconds:
-    secure: AAABAEcNH0iTLJXE3Xeq+R1UbLZGXDGG873VxVbzO+r0Hdd0
+    secure: AAABAJHFt0zj1w4OhsMyk+SgU9S/5OXg+T1ICwYGXIg9w6Y4
   animus:jwtRefreshTokenExpirationSeconds:
-    secure: AAABANtETObsUmIyb+MLYKvD7+f5Dif0kdccmYDk/nrBPD385Q==
-  animus:qdrantUrl:
-    secure: AAABAPrkLhR0ksshQjz+No0A/AJX8SoK0qeAiQJvKZAXvjyjOrP+3KfT6InCLBSa7hS2lYw=
-  animus:qdrantApiKey:
-    secure: AAABAB6dQ22gEGy/Cthz5TTEYNgE1xsSPukznPZYKUi0RuIqsz3xKltV7RP+JWUCiaWmXIcGNakh3tNaCSoApO3rbB4XKqLgFMshDw==
+    secure: AAABAKJX7+60JwRzh2X6MQeAWZ3fJejMBGU9aHoEI1CQ0dhSUQ==
   animus:inngestEventKey:
-    secure: AAABAIrfy+UcUt2QpYJnL6PG7dnGAu2MwFLVa75Uh3iIlWhfY+uLIZFfKuwr0FXuYVyNiLdtrsOvcwNRRhZlpEGT5UZME7pCrtH0cYYl/uPYbq56YnH5KE1aXb9hxcOh+nAyRkvvahuN2b4Q7WdlRIVER9zjrQ==
+    secure: AAABANxpxJN0DIIdJ6eNAEUOtbQPQv78PHeiaDohqvU/HW4hPBVqP8v5h9tCC+t/oWUR9uqntwHLZef55lHZc7PgInWU7xWcgsSbolmSQ/X3VD1krAU/fFd+7PFiUDC4szIf0kJ12akh8BZ4E15keKVUkI12iQ==
   animus:inngestSigningKey:
-    secure: AAABAOt3UR/dWHVU6UrIYCxpSVFcl1wKhwmqoxJa9wqJJFCB+v0ni4U50flCwcfr8gl++V+fbN7mMfjCfF8Vp5H89z1ioQaMMJ/OP6jCYgBtxSBMWbxlZN6AGa79RSxzzZhDXhZ6JK66vBrr6Q==
+    secure: AAABAF+fVEW+pbAFN7ulH+dkPagMvlrFjvDmSMydQFnY1ath2EFP8b47c/nA5yYA5rs0GWgb/134Pzmzm4skuMjkEDVnnNNjv/ll3T1rPIW1iC1TP1lH2SO0Gag1zKZTMbul2Uk1VKfBiT7m8Q==
   animus:googleClientId:
-    secure: AAABAP6NCUBgVdWp5PzrPnVW8Mf4PtqdrxfJ4oU3K0GGehQnWq8N+OlqvABm1jmfKuhiEZh7BIWnjtfoZEp57Djh5UUMqM2n00ogOdQK2YWhxG2pswHyWpRmHzIhrX5IWd3nTA9piQ==
+    secure: AAABAI0zdilB6dLoGr1QZIiad3H1u6xckN0AVI+rTebCVr8C/m9So+lc+YKk1cHorSo04fIoPKgoxNMPCo07xY5dpO/Q/cZ5+cs5TiLr88qdM/Ab4byvkPOnbPk1q8lWvWGgNzruaQ==
   animus:resendApiKey:
-    secure: AAABAERnlKuJN3tK8YAR5bKbdQwohkEj8zoDR6R6rXb0hDxarQ69HMDTy2zs5mlC0sL6LwU2aNrHBcPE8wUaQX1vb5E=
+    secure: AAABAAOS2ATS+EXf6CNQ8YPd/rqP0dCkBMBIuXlF6JlZjJHDFWi6TQh9dW8GQpfOhtH16RcI+iDJ7iBJYsWQJOk29TY=
   animus:resendSenderEmail:
-    secure: AAABAIVYfpdubl1QVU5ekwJyb88YoZLH+ORVEAbKpJNcLAyuggu/5v7q+QsKjDA6gw/UQJNl
+    secure: AAABAHFsp7GMdoTN4/rcicjrvT4RZNS828QsuYfqiSHMH2A4Htiz3GaUT1lSwE/A6JZjBN1K
   animus:emailVerificationSecretKey:
-    secure: AAABAP2kLnfi0U5cMm/0jaQoDmhTERljH1n1pmNyR/+zvbGzHan8dAwX7n7wjjc9vZrs4+OeSEWptlgZ7O18ekbp6rk=
+    secure: AAABAFA6ZhTnAB3hIdFJY3mp7QigZEufx/ZfYt1VEu0kSGu9D3IM04lVSY6H3OngOc3b9cVUYC87GLbgSTBg0RvsTBk=
   animus:emailVerificationSalt:
-    secure: AAABAFL8aocEtNNipCYNGQaqHK0Z8tBSZHAwEhkWs3TeWUf3GSmg5jjvl9hLX8hN/42pSy1CXuFsV8ESb7Xw4V2gao4=
+    secure: AAABACkvVXgce9iqVhy1+YbHmE5pMvdi2zLUmxgqbADcG0V3prWiBjyU1wyWglMmKQS1kY5/e97M7sSDLZ3jWWmSw+U=
   animus:emailVerificationOtpTtlSeconds:
-    secure: AAABAIfLqlnD/d773XYKqsOn7pCyy0g6czULAH7MqfuwdffQ
+    secure: AAABALI28x0H213LTg+EMrMPhGzddj1Wp+1nnzu5wAV8yhLf
   animus:emailVerificationTokenMaxAgeSeconds:
-    secure: AAABAC6ncdLIR/RCVkIQKT622CTpe2ZuteiWQsvwE4e9c9z5
+    secure: AAABABMAR0LdEIB0aWNZDJSyJtp+O6K0sMdR8cGgZNTZQ+Qq
   animus:geminiApiKey:
-    secure: AAABAHjepjLdsiYFGU8cxpnuk29fJJcuGpf2deyxaZFz41Vdx08RuAE1cPZSBNp3wkAXhhIEVNo0DJ1iDOwnmd2gr39LRQw=
+    secure: AAABAHe0l7ThxpyfeBPlJI9myZ9EVIiuxDBX1dTKvr1ZXTeaw/gsSEN6pcxq2Ekqm2gor8qtVd/4NUVN69K4UmJcKtHhJJw=
   animus:openaiApiKey:
-    secure: AAABANALxihRB4NSTIKg/4wbwoqvBfD7ivWRm2UY6RcHqSf7wDvvftDFAA==
+    secure: AAABAEkkSlGJmD2ie/OsAzoxgvFxiWD27oJml7JTK/SVKyHxSK4GC+xtD8lsRY3E07htYOBZTBCMjKngwctn7IHOfNW2EClc8pty/ZuLDm0XU/8LPV8h4l/p/9oVBxDKI1rqG1QU67rf6vKLE2ZkUinrXh5kjwqPUsQYXvyU0zVuDn1/aLgYkepHd7+kh8vpKHF74wm38KkMfc+tHrv/f2zqYuXH49W/C0hdfuAOqAxQRu/ccT/MtsCpY+jE6f2T6WAfbg==
   animus:pangeaServiceUrl:
-    secure: AAABAJjoX4v6OlMVSlzAGUfzFyd/7v8lhw8gdJp0vTOJDaSJxGwMpzBfP0PsDHO4PMK1qgIg7SyrfmC2fw==
-  animus:gcsEmulatorHost:
-    secure: AAABAPvjgVkpU8el2tcZyVht37CZYg4adPtCYPHdVsLtERo1fMDMU6XUqLp90b45A9dBbRw=
-  animus:serverAppUrl:
-    secure: AAABALD5F/QRX1qYfarcNIxVWqVPvCO1kqk3Q9b+1FHe+GxeT8KYOuSuJYBh1et5SybeBw==
-  animus:googleServerClientId:
-    secure: AAABAOOeO0r7unO0FHnMlhYlIIRBknQ04oQUTDeqBXi0adnH0xvReQjUVG1U7/e2YZqfnY6TAlb0Mbzr1jBiW5QyUPC/7eaN08JO6AUqL273O65dSXdQmhyMArFnHeTxygnY7Y0ETw==
-  animus:gcsUrl:
-    secure: AAABABnbh1nLXFaGvY6GZW5ysEToyd1h4A97E9UpEyOkCSF6Ct/js0f846AGFbDDoPf2lg==
-  animus:gcsDownloadUrl:
-    secure: AAABAN7wMFwkLIZ6Pr4NHK5IDNjHlp5wiopy4+DSc63FC61b7cYo6EbQXBHVzgfOHeiCn+ZmhOPyzA/DhmlJSZBj93i6vgqyNwFJCrDDTiaUSkNki131rZxZ
-  animus:pangeaUrl:
-    secure: AAABAKS3p6gCKwFBdBrxro5ww/5hDJlI9ySiZufidYl30FSJKhKKYyIH7zmHIkL6WqSlzIBXHTvHKBh5rg==
+    secure: AAABAMadsBD+fXWeGVKlOSK0KTvA216fY5CQ7kKqz26gL8q2neYWWExG2eHdbrun9fDfXljyTiavzOEoGA==
+  animus:supabaseStorageBucket: animus-bucket
+  animus:resetPasswordOtpTtlSeconds: "3600"
+  animus:resetPasswordOtpResendCooldownSeconds: "60"
+  animus:resetPasswordContextTtlSeconds: "1800"
+  animus:supabaseUrl: https://jvbvzsgxohuxdsprzhhg.supabase.co
+  animus:onesignalAppId: 73eced3a-df62-4203-bb04-77bee3118442
+  animus:jwtSecretKey:
+    secure: AAABANRgsMQAC8uatxCurzs1MFb9jJG+GHZPWnvBM162FJ2P5YqwaV2Ooj2PbOq96JA+76fRA84p9M88GiPC4RSkkW4=
+  animus:dbPassword:
+    secure: AAABALnoq2ea4JbY8gYg+0BVQFY/VRsaQUp7njwMqFFBfhv2fqk=
+  animus:qdrantUrl:
+    secure: AAABAJBHRgzMMtjmY3mZ/V1ytuLmXvcvThhRhuofFEYJK9A0oC+avvyxUuixXiiK66rAnRjyTC25P+nMOSuj0S6ejdixrbcVNK/X/zAc50JPtp1C7M98hVknTyAlZ6112vUgX9P1kdsOwNw=
+  animus:qdrantApiKey:
+    secure: AAABAJJpqngry9sdtnHs4fYOhfCVVSZQAXfwa2ZH8yiJdrgrS8qMgAyPIwQAmv768dFq9D5EOGriUpTUrBq5dFrDzuF7uIQZ1KS6Jrh1HrX2pHb4KIfyn5CiGVMnh9EvUSg3LQOHuADjxgL5hxqjkps5wXB57Y93W7hlbYYR1sHNXnLMzbUcvL0EycbSh4n9M/iwndIlf5oVsQQ4ysCz/DLO+1FiHJHZOIrNrvXfDDGE6NFJwH5K/qepNSqQfXBfovfZJHm7onBmq9yQXTX1xA==
+  animus:onesignalRestApiKey:
+    secure: AAABAG0AbAkq0zGMgrpHMyHPHIfHEG5FQ7U+fsbt84lyS2JL6r1BRwU1lFC5ymVZcwaOcOvK7uDCKayFvBlEFE6kvab3iEROUdPF2/j60FCTdv6w9ywcjwNVu419IuBzPqT3RtQ3t4Gs3HvtMW2IBrJe3e/KrUn7g4PTNSYhvodIHMC9EPNuIKJ4c1rpA7Wh/Q==
+  animus:supabaseKey:
+    secure: AAABAGD8yTF9nf3Ta1WlQ2Sb99TqU42wQYyERZ8ZFxsE57DkVW6UP5LftqzGUnm3DGo4KSTLoCFHHVVOX5QISS9UPgVVrzyR9D/6hcHa

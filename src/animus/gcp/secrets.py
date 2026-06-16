@@ -26,6 +26,14 @@ ENV_SECRET_NAMES = (
     "EMAIL_VERIFICATION_SECRET_KEY",
     "EMAIL_VERIFICATION_SALT",
     "EMAIL_VERIFICATION_TOKEN_MAX_AGE_SECONDS",
+    "SUPABASE_STORAGE_BUCKET",
+    "RESET_PASSWORD_OTP_TTL_SECONDS",
+    "RESET_PASSWORD_OTP_RESEND_COOLDOWN_SECONDS",
+    "RESET_PASSWORD_CONTEXT_TTL_SECONDS",
+    "SUPABASE_URL",
+    "SUPABASE_KEY",
+    "ONESIGNAL_APP_ID",
+    "ONESIGNAL_REST_API_KEY",
 )
 
 
@@ -116,6 +124,36 @@ def build_secrets_config(
 
     if settings.onesignal_api_key is not None:
         secret_specs["onesignal-api-key"] = settings.onesignal_api_key
+
+    if settings.supabase_storage_bucket is not None:
+        secret_specs["supabase-storage-bucket"] = settings.supabase_storage_bucket
+
+    if settings.reset_password_otp_ttl_seconds is not None:
+        secret_specs["reset-password-otp-ttl-seconds"] = (
+            settings.reset_password_otp_ttl_seconds
+        )
+
+    if settings.reset_password_otp_resend_cooldown_seconds is not None:
+        secret_specs["reset-password-otp-resend-cooldown-seconds"] = (
+            settings.reset_password_otp_resend_cooldown_seconds
+        )
+
+    if settings.reset_password_context_ttl_seconds is not None:
+        secret_specs["reset-password-context-ttl-seconds"] = (
+            settings.reset_password_context_ttl_seconds
+        )
+
+    if settings.supabase_url is not None:
+        secret_specs["supabase-url"] = settings.supabase_url
+
+    if settings.supabase_key is not None:
+        secret_specs["supabase-key"] = settings.supabase_key
+
+    if settings.onesignal_app_id is not None:
+        secret_specs["onesignal-app-id"] = settings.onesignal_app_id
+
+    if settings.onesignal_rest_api_key is not None:
+        secret_specs["onesignal-rest-api-key"] = settings.onesignal_rest_api_key
 
     rendered = {}
 

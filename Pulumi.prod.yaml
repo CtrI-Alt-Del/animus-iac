@@ -6,4 +6,53 @@ config:
   animus:databaseUser: animus
   animus:env: prod
   animus:githubBranch: main
-  animus:mlflowEnabled: false
+  animus:mlflowEnabled: "false"
+  animus:mlflowImage: us-docker.pkg.dev/cloudrun/container/hello
+  animus:jwtAlgorithm:
+    secure: AAABANbtq+j1pSHFqTB9DlbAQ7Kfg8wUO/BkDWbrWcORt+rweA==
+  animus:jwtAccessTokenExpirationSeconds:
+    secure: AAABAEdC/nwO4jw2vaEF0gbrBaKyLpkbpXNw/ttjI+tirHht
+  animus:jwtRefreshTokenExpirationSeconds:
+    secure: AAABALzDbHlWJydCzXQgKYjINr6j46+M6/lcWpBIDOntJGMZ3A==
+  animus:inngestEventKey:
+    secure: AAABAO0Kbd+Stt0Ito39oWNAHHCwCZLOyP76qzkFUbW3SkO0HYkQYYQmM6VHQXBEZKFdrnroWhjlX/cKQs+b1EovVGEUOQR+ix9u3R81r3XGYuTps6yoPJg3Ju6PAs0KDtSeI3LbVOFKecqDHMnIEMNI+AEOPA==
+  animus:inngestSigningKey:
+    secure: AAABAMkhz8uVAYr+LOiGVTSqTWQDqFTsjJSUkWUdWQo9WDPf87oj7KIaiRK4apCpNj0sfr5jLpDZSx3M2SAo+wmubMDpPEOIH0pNyiX9tU3UtjaOmXDwzfYl1jM4sCzNNaYqsSI/0jOF2MJbUw==
+  animus:googleClientId:
+    secure: AAABAGc5IO5sIC51otq152cx5ZwezAZitsPjgyJ6FRY4QFg8NSksWJO0Jj0zjsE80/uYoUgVarrmI45Gmp2/h1bNNYwOcUhnplQhvbMQXL41HBSzyqX4qVybQVTT3oyE6BHLZDxH0Q==
+  animus:resendApiKey:
+    secure: AAABAJfHEjZFz60wyYF6cXDYbBHpodpnu3XhvacOs9DHdsqVkPuSGbLTzqVIAaA/NRAxW4UQ7B8fMVASyQo7+NxTTjs=
+  animus:resendSenderEmail:
+    secure: AAABADHiUxMAqbJIRPA1jFm2584G5AWk7eUrpdZOvgCXsYNg/a5X+uOvbd3w2Cw5n8L+e7Mg
+  animus:emailVerificationSecretKey:
+    secure: AAABAK4n3lTbkZ7DNjdC4f8FFQiueKJ2bX154kqQDuTHkcj3BwnZlZlC94wqaqw2T5pS1igrAKJY5mg3JMeJmKYRu/s=
+  animus:emailVerificationSalt:
+    secure: AAABAFAZnuqhPzCBa8zalop4SgAYP5p5RkghGJIwlm1oFi5zin6M4bdxPpQvcRBG5e936YB0LnIhnRAPai1LheFrMLs=
+  animus:emailVerificationOtpTtlSeconds:
+    secure: AAABAOa9CFeFDqvarMhLfe5SFLDOYRAagMEigOwKuI2i60iS
+  animus:emailVerificationTokenMaxAgeSeconds:
+    secure: AAABAM6b1Hc9PJ1JdK/Z9hMOFKPxeGFW27hwHYSxjlwr0ApG
+  animus:geminiApiKey:
+    secure: AAABAG1LF/Q4Jx9n7inZ+CorFs0ctOE3c683NCg22Fk40yJh1WFuqRA790AgAEj54ZQc5c0y6LUulxlkGt/73heYX24RhgU=
+  animus:openaiApiKey:
+    secure: AAABALM3G0xGvrNtl7x18wCOtb481KsoKDPZfl+ZBm3xjOcumP38ymR6KP4wLVdgr9u+i80dT7f6iJvRBLbYoce9haJBcTfi1uR9CFY7LuvHkMSvApnje1UK2wXxpfgDWzbFye03beUXpAsBpSmVJfw9AgCCiOOZZ7UUbm6rGEbQFzQh78h7o7/ydOhEey04vF8zDRN7SR48fVuMDIEpyyScFFprxOcKb3LiSf2IKO4Cy33xK0wm7JJ8bemc+Zwp0LamKA==
+  animus:pangeaServiceUrl:
+    secure: AAABAFIK2nTeZnFoU4snEbpIRdZtrpw6TBjCw12znaP+ktpsiFW0KV8cVxiORMIfi/k9HCpnKmcHgxgXcQ==
+  animus:supabaseStorageBucket: animus-bucket
+  animus:resetPasswordOtpTtlSeconds: "3600"
+  animus:resetPasswordOtpResendCooldownSeconds: "60"
+  animus:resetPasswordContextTtlSeconds: "1800"
+  animus:supabaseUrl: https://jvbvzsgxohuxdsprzhhg.supabase.co
+  animus:onesignalAppId: 73eced3a-df62-4203-bb04-77bee3118442
+  animus:jwtSecretKey:
+    secure: AAABALbUNznj7kBHo6T1e4N4yEo8iAnHybAKR/cCe+Y10wfMUlSvNba7KOJjD7CRJ0+O57lOGAPyM4I4xhBYLaP6RIU=
+  animus:dbPassword:
+    secure: AAABAHiGROjzdznsxN//RX90RctGWKX8XD5IyihRysXJ3O8kyLU=
+  animus:qdrantUrl:
+    secure: AAABANNi/IRPv0/JPgHyhZlw8bGbIBP3nPqiz2JSYfGyfmTC9iJbo2DcqTN3yQ0xSfl/KepwOv0oqD1bVAflE6IjBjNnm+n6XNa0IYSqczHPQnuMrmEXeZF0cJ8Co0ttov+RvKV5j1O2i0Y=
+  animus:qdrantApiKey:
+    secure: AAABAF3s00wJUPjZ/zuKKJCZ9hufkBxT/z0ixLMFrn19BpxjY0l5jNYJyCZrYT1GYOwo6+RDxPhO/efz6/78brxMKmSt5Aj/HS8hVbwprMiLWcUkpiKtVWnP5KFvgJhz9mSz7w2I+4Y2SDy4xtSjPKFYdYIVx2cptng16fnsTLDGSfaKMzMgOpYKhRa2A4jEwEn9O6EACN7H5nBXnrHbXUt/tAdKPEWrwnNxtaOdfOhGqb9QF1f/iUyl+T/NEPVCuxRdFblWCx7rt37nQSmFnw==
+  animus:onesignalRestApiKey:
+    secure: AAABADwySwGtP5DbYYigGCiFQ8ZdZHY0tcCSOmhdQZ7eJPMdLcoDioOYvalTD/E/OIuJRSc0S5hcvT+6+R5sDI+2lNCHk6wKBwJGLMygj4zAUKrQn9pJqXYvKyFGgw8ZENhQVenkub60+a5oPRmjqP1HqwLq7iKkgiO8Veoa/3n47xpRU2xmboQNQcJPo9cfYg==
+  animus:supabaseKey:
+    secure: AAABAOdd/MayjPpzyOVD96oYq6bsgQ+pzYAITBuhsbROmKd6HdvpL/Zxjr/WzKaA8+SIardSOq3Xyxqnc2aH5+LIwutuEQjJmLXAegs3

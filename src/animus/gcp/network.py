@@ -77,7 +77,7 @@ def build_network_config(
         network=network.id,
         service="servicenetworking.googleapis.com",
         reserved_peering_ranges=[private_services_range.name],
-        deletion_policy="DELETE" if settings.is_production else "ABANDON",
+        deletion_policy="ABANDON",
     )
 
     vpc_connector = gcp.vpcaccess.Connector(
