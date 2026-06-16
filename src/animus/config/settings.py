@@ -51,6 +51,15 @@ class Settings:
     inngest_event_key: Optional[pulumi.Input[str]]
     inngest_signing_key: Optional[pulumi.Input[str]]
     onesignal_api_key: Optional[pulumi.Input[str]]
+    supabase_storage_bucket: Optional[str]
+    reset_password_otp_ttl_seconds: Optional[str]
+    reset_password_otp_resend_cooldown_seconds: Optional[str]
+    reset_password_context_ttl_seconds: Optional[str]
+    supabase_url: Optional[str]
+    supabase_key: Optional[pulumi.Input[str]]
+    onesignal_app_id: Optional[str]
+    onesignal_rest_api_key: Optional[pulumi.Input[str]]
+    iam_user_email: Optional[str]
     github_repository: Optional[str]
     github_branch: Optional[str]
 
@@ -140,6 +149,21 @@ def load_settings() -> Settings:
         inngest_event_key=_config_secret(app_config, "inngestEventKey"),
         inngest_signing_key=_config_secret(app_config, "inngestSigningKey"),
         onesignal_api_key=_config_secret(app_config, "onesignalApiKey"),
+        supabase_storage_bucket=app_config.get("supabaseStorageBucket"),
+        reset_password_otp_ttl_seconds=app_config.get(
+            "resetPasswordOtpTtlSeconds"
+        ),
+        reset_password_otp_resend_cooldown_seconds=app_config.get(
+            "resetPasswordOtpResendCooldownSeconds"
+        ),
+        reset_password_context_ttl_seconds=app_config.get(
+            "resetPasswordContextTtlSeconds"
+        ),
+        supabase_url=app_config.get("supabaseUrl"),
+        supabase_key=_config_secret(app_config, "supabaseKey"),
+        onesignal_app_id=app_config.get("onesignalAppId"),
+        onesignal_rest_api_key=_config_secret(app_config, "onesignalRestApiKey"),
+        iam_user_email=app_config.get("iamUserEmail"),
         github_repository=app_config.get("githubRepository"),
         github_branch=app_config.get("githubBranch"),
     )

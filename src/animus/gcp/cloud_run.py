@@ -59,6 +59,14 @@ def _build_api_envs(
         "email-verification-salt": "EMAIL_VERIFICATION_SALT",
         "email-verification-otp-ttl-seconds": "EMAIL_VERIFICATION_OTP_TTL_SECONDS",
         "email-verification-token-max-age-seconds": "EMAIL_VERIFICATION_TOKEN_MAX_AGE_SECONDS",
+        "supabase-storage-bucket": "SUPABASE_STORAGE_BUCKET",
+        "reset-password-otp-ttl-seconds": "RESET_PASSWORD_OTP_TTL_SECONDS",
+        "reset-password-otp-resend-cooldown-seconds": "RESET_PASSWORD_OTP_RESEND_COOLDOWN_SECONDS",
+        "reset-password-context-ttl-seconds": "RESET_PASSWORD_CONTEXT_TTL_SECONDS",
+        "supabase-url": "SUPABASE_URL",
+        "supabase-key": "SUPABASE_KEY",
+        "onesignal-app-id": "ONESIGNAL_APP_ID",
+        "onesignal-rest-api-key": "ONESIGNAL_REST_API_KEY",
     }
     for secret_name, env_name in optional_secret_envs.items():
         if (
